@@ -8,10 +8,14 @@
 
 import { NgModule } from '@angular/core';
 import { UniversalModule } from 'angular2-universal';
-import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AppRouting, AppRoutingProviders } from './app.routing';
+
 import { AppComponent } from './index';
-// import { RouterModule } from '@angular/router';
-// import { appRoutes } from './app/app.routing';
+import { MainComponent } from './components/main.component';
+
+import { SeriesResolve } from './resolves/series.resolve';
+import { AUTO_PREBOOT } from 'angular2-universal';
 
 /**
  * Top-level NgModule "container"
@@ -20,18 +24,28 @@ import { AppComponent } from './index';
   /** Root App Component */
   bootstrap: [ AppComponent ],
   /** Our Components */
-  declarations: [ AppComponent ],
+  declarations: [
+    AppComponent,
+    MainComponent
+  ],
   imports: [
     /**
      * NOTE: Needs to be your first import (!)
      * NodeModule, NodeHttpModule, NodeJsonpModule are included
      */
     UniversalModule,
-    FormsModule
+    RouterModule.forRoot(AppRouting)
     /**
      * using routes
      */
     // RouterModule.forRoot(appRoutes)
+  ],
+  providers: [
+    SeriesResolve,
+    {
+      provide: AUTO_PREBOOT,
+      useValue: false
+    }
   ]
 })
 export class AppModule {

@@ -60,7 +60,8 @@ function ngApp(req: any, res: any) {
     preboot: false,
     baseUrl: '/',
     requestUrl: req.originalUrl,
-    originUrl: req.hostname
+    originUrl: req.hostname,
+    async: true
   });
 }
 

@@ -1,0 +1,7 @@
+<h1>{{title}}</h1>
+
+<div class="cols">
+    <div class="col" *ngFor="let series of data.series.series">
+      <div class="picture" [ngStyle]="{ 'background-image': 'url(' + series.image.filename + ')'}">&nbsp;</div>
+    </div>
+</div>
